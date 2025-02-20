@@ -12,6 +12,10 @@
 		The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
 		either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
 		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
+		    <UseAot>true</UseAot>
+    <RunAOTCompilation>true</RunAOTCompilation>
+    <AndroidEnableLLVM>true</AndroidEnableLLVM>
+
 
 		<OutputType>Exe</OutputType>
 		<RootNamespace>App</RootNamespace>
@@ -62,6 +66,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+		<PackageReference Include="OpenAI" Version="2.1.0" />
 	</ItemGroup>
 
 </Project>

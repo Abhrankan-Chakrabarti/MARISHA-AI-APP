@@ -1,0 +1,5 @@
+d:\programs\CSprograms\App\App\bin\Release\net9.0-android\publish\com.companyname.app-Signed.apk
+d:\programs\CSprograms\App\App\bin\Release\net9.0-android\publish\com.companyname.app.apk
+d:\programs\CSprograms\App\App\bin\Release\net9.0-android\publish\MARISHA AI.apk
+d:\programs\CSprograms\App\App\bin\Release\net9.0-android\publish\com.companyname.app-Signed.aab
+d:\programs\CSprograms\App\App\bin\Release\net9.0-android\publish\_Microsoft.Android.Resource.Designer.dll

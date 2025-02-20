@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.MainPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="30,0" Spacing="25" HorizontalOptions="Center">
+            
+            <!-- Marisha AI Logo -->
+            <Image Source="marisha.png"
+                   WidthRequest="600"
+                   HeightRequest="360"
+                   Aspect="AspectFit"/>
+            
+            <!-- App Title -->
+            <Border Stroke="Pink"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="5"
+                    BackgroundColor="Black"
+                    WidthRequest="250"
+                    HeightRequest="90"
+                    HorizontalOptions="Center">
+                <Label Text="MARISHA AI"
+                       TextColor="Cyan"
+                       BackgroundColor="Black"
+                       FontSize="Large"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"/>
+            </Border>
+            
+             <!-- Chat Messages -->
+        <ListView x:Name="ChatList"
+                  HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame Padding="10" CornerRadius="10" BackgroundColor="Black">
+                            <Label Text="{Binding}" TextColor="Green"/>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Input Box -->
+        <HorizontalStackLayout HorizontalOptions ="Center" Spacing="10">
+            <Entry x:Name="UserInput" 
+                   Placeholder="Ask Marisha AI..." 
+                   WidthRequest="250"
+                   VerticalOptions="Center"
+                   TextColor="Green"/>
+            <Button Text="Send" Clicked="OnSendMessage"/>
+            
+        </HorizontalStackLayout>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
