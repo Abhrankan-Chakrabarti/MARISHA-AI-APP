@@ -16,14 +16,14 @@
                     StrokeShape="RoundRectangle 20"
                     Padding="5"
                     BackgroundColor="Black"
-                    WidthRequest="250"
+                    WidthRequest="280"
                     HeightRequest="90"
                     HorizontalOptions="Center">
                 <Label Text="MARISHA AI"
                        TextColor="Cyan"
                        BackgroundColor="Black"
                        FontSize="Large"
-                       HorizontalTextAlignment="Center"
+                       HorizontalTextAlignment="Center" 
                        VerticalTextAlignment="Center"/>
             </Border>
             
