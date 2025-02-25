@@ -12,7 +12,7 @@
                    Aspect="AspectFit"/>
             
             <!-- App Title -->
-            <Border Stroke="Pink"
+            <Border Stroke="#FFE96178"
                     StrokeShape="RoundRectangle 20"
                     Padding="5"
                     BackgroundColor="Black"

@@ -468,3 +468,4 @@ D:\programs\CSprograms\App\App\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\re
 D:\programs\CSprograms\App\App\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\OpenAI.dll
 D:\programs\CSprograms\App\App\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\System.ClientModel.dll
 D:\programs\CSprograms\App\App\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\System.Memory.Data.dll
+D:\programs\CSprograms\App\App\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\App.sourcelink.json

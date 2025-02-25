@@ -938,3 +938,4 @@ D:\programs\CSprograms\App\App\obj\Debug\net9.0-android\app_shared_libraries\arm
 D:\programs\CSprograms\App\App\obj\Debug\net9.0-android\android\assets\arm64-v8a\OpenAI.dll
 D:\programs\CSprograms\App\App\obj\Debug\net9.0-android\android\assets\arm64-v8a\System.ClientModel.dll
 D:\programs\CSprograms\App\App\obj\Debug\net9.0-android\android\assets\arm64-v8a\System.Memory.Data.dll
+D:\programs\CSprograms\App\App\obj\Debug\net9.0-android\App.sourcelink.json
