@@ -453,3 +453,4 @@ D:\programs\CSprograms\App\App\obj\Release\net9.0-android\stamp\_ConvertResource
 D:\programs\CSprograms\App\App\obj\Release\net9.0-android\stamp\_GenerateJavaStubs.stamp
 D:\programs\CSprograms\App\App\obj\Release\net9.0-android\stamp\_GeneratePackageManagerJava.stamp
 D:\programs\CSprograms\App\App\obj\Release\net9.0-android\stamp\_ResolveLibraryProjectImports.stamp
+d:\programs\CSprograms\App\App\obj\Release\net9.0-android\App.sourcelink.json

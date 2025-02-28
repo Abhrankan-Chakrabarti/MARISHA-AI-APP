@@ -3,7 +3,8 @@ using System;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Threading.Tasks;
-
+using System.Text.Json;
+using System.Text;
 
 namespace App
 {
@@ -13,8 +14,8 @@ namespace App
         Random random = new Random();
         bool isFirstResponse = true;
         private readonly HttpClient httpClient = new HttpClient();
-        private readonly string apiurl = "https://api.openai.com/v1/chat/completions";
-
+        private readonly string apiKey = "PLACE GEMINI API KEY HERE DONT SHARE WITH ANY ONE "; // 🔥 Replace with your Gemini API key
+        private readonly string apiUrl = "https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent";
 
         public MainPage()
         {
@@ -22,33 +23,29 @@ namespace App
             ChatList.ItemsSource = chatMessages; // Binds ListView to chat messages
         }
 
-
-
         private async void OnSendMessage(object sender, EventArgs e)
-{
-    string userMessage = UserInput.Text?.Trim(); // It is handled
-    if (string.IsNullOrWhiteSpace(userMessage))
-    {
-        Dispatcher.DispatchDelayed(TimeSpan.FromSeconds(1), () =>
         {
-            chatMessages.Add("Come on Man Type Something!");
-        });
-    }
-    else
-    {
-        chatMessages.Add("You: " + userMessage);
-        UserInput.Text = "";
+            string userMessage = UserInput.Text?.Trim();
+            if (string.IsNullOrWhiteSpace(userMessage))
+            {
+                Dispatcher.DispatchDelayed(TimeSpan.FromSeconds(1), () =>
+                {
+                    chatMessages.Add("Come on Man Type Something!");
+                });
+            }
+            else
+            {
+                chatMessages.Add("You: " + userMessage);
+                UserInput.Text = "";
 
-    
-        string response = await GetRandomResponse(userMessage);
+                string response = await GetRandomResponse(userMessage);
 
-        Dispatcher.Dispatch(() =>
-        {
-            chatMessages.Add("Marisha AI: " + response);
-        });
-    }
-}
-
+                Dispatcher.Dispatch(() =>
+                {
+                    chatMessages.Add("Marisha AI: " + response);
+                });
+            }
+        }
 
         private async Task<string> GetRandomResponse(string userMessage)
         {
@@ -62,56 +59,70 @@ namespace App
                 "YOU WASTED TWO MINUTES OF YOUR LIFE! 😂"
             };
 
-            if (isFirstResponse == true)
-                {
-                    return await GetActualResponse(userMessage);
-                }
+            if (isFirstResponse)
+            {
+                isFirstResponse = false;
+                return await GetActualResponse(userMessage);
+            }
 
             return random.Next(3) < 2
-            ?await GetActualResponse(userMessage)
-            : responses[random.Next(responses.Length)];
-
-             
+                ? await GetActualResponse(userMessage)
+                : responses[random.Next(responses.Length)];
         }
 
         private async Task<string> GetActualResponse(string userMessage)
+        {
+            try
             {
-                    try
-                        {
-                            var request = new HttpRequestMessage(HttpMethod.Post,apiurl);
-                            request.Headers.Add("Authorization","Bearer ApIKey");
+                string requestUrl = $"{apiUrl}?key={apiKey}";
 
-                            var requestBody = new
+                var requestBody = new
+                {
+                    contents = new[]
+                    {
+                        new
+                        {
+                            role = "user",
+                            parts = new[]
                             {
-                                model = "gpt-4o",
-                                messages = new[]
-                                {
-                                    new{role = " user", content = "userMessage"},
-                                     new { role = "system", content = "You are Marisha AI, a helpful and sarcastic AI assistant." }
-                                }
-                            };
-
-                            string jsonBody = System.Text.Json.JsonSerializer.Serialize(requestBody);
-                            request.Content = new StringContent(jsonBody,System.Text.Encoding.UTF8,"application/json");
-
-                            var response = await httpClient.SendAsync(request);
-                            response.EnsureSuccessStatusCode();
-
-                            var responseBody = await response.Content.ReadAsStringAsync();
-                            using var jsonDoc = System.Text.Json.JsonDocument.Parse(responseBody);
-
-                            var aiResponse = jsonDoc.RootElement
-                            .GetProperty("choices")[0]
-                            .GetProperty("message")
-                            .GetProperty("content")
-                            .GetString(); 
-
-                            return string.IsNullOrWhiteSpace(aiResponse) ? "Tell me properly or I will go to sleep" : aiResponse;
+                                new { text = userMessage }
+                            }
                         }
-                    catch(Exception)
-                        {
-                            return "Bruh I aint doing that , what a drag";
-                        }
+                    }
+                };
+
+                string jsonBody = JsonSerializer.Serialize(requestBody);
+                var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
+                request.Content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
+
+                var response = await httpClient.SendAsync(request);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    string errorResponse = await response.Content.ReadAsStringAsync();
+                    return $"❌ MARISHA AI ERROR! \n{errorResponse}";
+                }
+
+                var responseBody = await response.Content.ReadAsStringAsync();
+                using var jsonDoc = JsonDocument.Parse(responseBody);
+
+                // ✅ Fix: Extract "text" safely from JSON
+                if (jsonDoc.RootElement.TryGetProperty("candidates", out JsonElement candidates) &&
+                    candidates.GetArrayLength() > 0 &&
+                    candidates[0].TryGetProperty("content", out JsonElement content) &&
+                    content.TryGetProperty("parts", out JsonElement parts) &&
+                    parts.GetArrayLength() > 0 &&
+                    parts[0].TryGetProperty("text", out JsonElement textElement))
+                {
+                    return textElement.GetString() ?? "🤖 Marisha AI: No response received!";
+                }
+
+                return "🤖 Marisha AI: No valid response!";
             }
+            catch (Exception ex)
+            {
+                return $"What a Drag! You caused an Error: {ex.Message}";
+            }
+        }
     }
 }

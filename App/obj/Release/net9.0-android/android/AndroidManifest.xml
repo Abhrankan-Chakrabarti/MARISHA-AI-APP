@@ -11,7 +11,7 @@
   <uses-permission android:name="android.permission.INTERNET" />
   <permission android:name="com.companyname.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" android:protectionLevel="signature" />
   <uses-permission android:name="com.companyname.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-  <application android:name="crc64a27fdd34899c7945.MainApplication" android:allowBackup="true" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:extractNativeLibs="true" android:icon="@mipmap/appicon" android:label="App" android:roundIcon="@mipmap/appicon_round" android:supportsRtl="true">
+  <application android:name="crc64a27fdd34899c7945.MainApplication" android:allowBackup="true" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:extractNativeLibs="true" android:icon="@mipmap/appicon" android:label="MARISHA AI" android:roundIcon="@mipmap/appicon_round" android:supportsRtl="true">
     <activity android:name="crc6468b6408a11370c2f.WebAuthenticatorIntermediateActivity" android:configChanges="orientation|screenSize" android:exported="false" />
     <provider android:name="microsoft.maui.essentials.fileProvider" android:authorities="com.companyname.app.fileProvider" android:exported="false" android:grantUriPermissions="true">
       <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/microsoft_maui_essentials_fileprovider_file_paths" />
