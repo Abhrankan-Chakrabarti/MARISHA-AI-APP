@@ -14,7 +14,7 @@ namespace App
         Random random = new Random();
         bool isFirstResponse = true;
         private readonly HttpClient httpClient = new HttpClient();
-        private readonly string apiKey = "PLACE GEMINI API KEY HERE DONT SHARE WITH ANY ONE "; // 🔥 Replace with your Gemini API key
+        private readonly string apiKey = "PLACE GEMINI API KEY HERE DONT SHARE WITH ANY ONE "; 
         private readonly string apiUrl = "https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent";
 
         public MainPage()
@@ -106,7 +106,7 @@ namespace App
                 var responseBody = await response.Content.ReadAsStringAsync();
                 using var jsonDoc = JsonDocument.Parse(responseBody);
 
-                // ✅ Fix: Extract "text" safely from JSON
+                
                 if (jsonDoc.RootElement.TryGetProperty("candidates", out JsonElement candidates) &&
                     candidates.GetArrayLength() > 0 &&
                     candidates[0].TryGetProperty("content", out JsonElement content) &&
