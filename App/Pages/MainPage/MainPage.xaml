@@ -39,14 +39,14 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Frame Padding="10" CornerRadius="10" BackgroundColor="Black">
+                                <Border Stroke="Black" StrokeShape="RoundRectangle 10" BackgroundColor="Black" Padding="10">
                                     <StackLayout>
                                         <Label Text="{Binding Text}" TextColor="White" IsVisible="{Binding IsText}" />
                                         <Image Source="{Binding ImageUrl}" 
                                                WidthRequest="250" HeightRequest="250" 
                                                IsVisible="{Binding IsImage}" />
                                     </StackLayout>
-                                </Frame>
+                                </Border>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
