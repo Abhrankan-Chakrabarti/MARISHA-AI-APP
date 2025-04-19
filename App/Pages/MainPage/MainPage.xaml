@@ -1,58 +1,80 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App.MainPage">
-    <ScrollView>
-        <VerticalStackLayout Padding="30,0" Spacing="25" HorizontalOptions="Center">
-            
-            <!-- Marisha AI Logo -->
-            <Image Source="marisha.png"
-                   WidthRequest="600"
-                   HeightRequest="360"
-                   Aspect="AspectFit"/>
-            
-            <!-- App Title -->
-            <Border Stroke="#FFE96178"
-                    StrokeShape="RoundRectangle 20"
-                    Padding="5"
-                    BackgroundColor="Black"
-                    WidthRequest="280"
-                    HeightRequest="90"
-                    HorizontalOptions="Center">
-                <Label Text="MARISHA AI"
-                       TextColor="Cyan"
-                       BackgroundColor="Black"
-                       FontSize="Large"
-                       HorizontalTextAlignment="Center" 
-                       VerticalTextAlignment="Center"/>
-            </Border>
-            
-             <!-- Chat Messages -->
-        <ListView x:Name="ChatList"
-                  HasUnevenRows="True">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Frame Padding="10" CornerRadius="10" BackgroundColor="Black">
-                            <Label Text="{Binding}" TextColor="Green"/>
-                        </Frame>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+    <Grid>
 
-        <!-- Input Box -->
-        <HorizontalStackLayout HorizontalOptions ="Center" Spacing="10">
-            <Entry x:Name="UserInput" 
-                   Placeholder="Ask Marisha AI..." 
-                   WidthRequest="250"
-                   VerticalOptions="Center"
-                   TextColor="Green"/>
-            <Button Text="Send" Clicked="OnSendMessage"/>
-            
-        </HorizontalStackLayout>
+        <!-- Main UI Layer -->
+        <ScrollView>
+            <VerticalStackLayout Padding="30" Spacing="25" HorizontalOptions="Center">
 
+                <!-- Logo -->
+                <Image Source="shaidow.png"
+                       WidthRequest="600"
+                       HeightRequest="360"
+                       Aspect="AspectFit"/>
+                
+                      
+                      
+                <!-- App Title -->
+                <Border Stroke="#FF3F3D3D"
+                        StrokeShape="RoundRectangle 20"
+                        Padding="5"
+                        BackgroundColor="Black"
+                        WidthRequest="280"
+                        HeightRequest="90"
+                        HorizontalOptions="Center">
+                    <Label Text="SHAIDOW"
+                           TextColor="Cyan"
+                           BackgroundColor="Black"
+                           FontSize="Large"
+                           HorizontalTextAlignment="Center" 
+                           VerticalTextAlignment="Center"/>
+                </Border>
+               
+                
 
-        </VerticalStackLayout>
-    </ScrollView>
+                <!-- Chat List -->
+                <ListView x:Name="ChatList"
+                          HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame Padding="10" CornerRadius="10" BackgroundColor="Black">
+                                    <StackLayout>
+                                        <Label Text="{Binding Text}" TextColor="White" IsVisible="{Binding IsText}" />
+                                        <Image Source="{Binding ImageUrl}" 
+                                               WidthRequest="250" HeightRequest="250" 
+                                               IsVisible="{Binding IsImage}" />
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <!-- Input Box -->
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                    <Entry x:Name="UserInput" 
+                           Placeholder="Ask SHAIDOW AI..." 
+                           WidthRequest="250"
+                           VerticalOptions="Center"
+                           TextColor="cyan"/>
+                    <Button Text="Send" Clicked="OnSendMessage"/>
+                     <!--loading wheel-->
+                <ActivityIndicator x:Name="Spinner" 
+                                   IsVisible="False" 
+                                   IsRunning="False" 
+                                   WidthRequest="25"
+                                   HeightRequest="25"
+                                   TranslationX="0"
+                                   HorizontalOptions="Start"
+                                    VerticalOptions="Center"
+                                   Color="Cyan"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+      
+
+    </Grid>
 </ContentPage>

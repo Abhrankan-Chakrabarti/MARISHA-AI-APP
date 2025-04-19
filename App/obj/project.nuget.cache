@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "UsPKoy6BTEU=",
+  "dgSpecHash": "6tipg2y2fO8=",
   "success": true,
   "projectFilePath": "d:\\programs\\CSprograms\\App\\App\\App.csproj",
   "expectedPackageFiles": [
@@ -127,9 +127,9 @@
     "C:\\Users\\ricky\\.nuget\\packages\\xamarin.kotlinx.coroutines.core.jvm\\1.8.1.3\\xamarin.kotlinx.coroutines.core.jvm.1.8.1.3.nupkg.sha512",
     "C:\\Users\\ricky\\.nuget\\packages\\xamarin.kotlinx.serialization.core\\1.7.1.3\\xamarin.kotlinx.serialization.core.1.7.1.3.nupkg.sha512",
     "C:\\Users\\ricky\\.nuget\\packages\\xamarin.kotlinx.serialization.core.jvm\\1.7.1.3\\xamarin.kotlinx.serialization.core.jvm.1.7.1.3.nupkg.sha512",
-    "C:\\Users\\ricky\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.2\\microsoft.netcore.app.ref.9.0.2.nupkg.sha512",
-    "C:\\Users\\ricky\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.2\\microsoft.netcore.app.ref.9.0.2.nupkg.sha512",
-    "C:\\Users\\ricky\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.2\\microsoft.netcore.app.ref.9.0.2.nupkg.sha512",
+    "C:\\Users\\ricky\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.4\\microsoft.netcore.app.ref.9.0.4.nupkg.sha512",
+    "C:\\Users\\ricky\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.4\\microsoft.netcore.app.ref.9.0.4.nupkg.sha512",
+    "C:\\Users\\ricky\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.4\\microsoft.netcore.app.ref.9.0.4.nupkg.sha512",
     "C:\\Users\\ricky\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\9.0.0\\microsoft.netcore.app.runtime.win-x64.9.0.0.nupkg.sha512",
     "C:\\Users\\ricky\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\9.0.0\\microsoft.windowsdesktop.app.runtime.win-x64.9.0.0.nupkg.sha512",
     "C:\\Users\\ricky\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\9.0.0\\microsoft.aspnetcore.app.runtime.win-x64.9.0.0.nupkg.sha512",
