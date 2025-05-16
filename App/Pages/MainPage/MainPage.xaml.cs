@@ -8,6 +8,8 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net;
+using System.Net.Http.Headers;
 
 namespace App
 {
@@ -26,6 +28,7 @@ namespace App
 
         private readonly string mistralApiUrl = "https://api.mistral-7b.com/v1/chat/completions";
         private readonly string claudeApiUrl = "https://api.anthropic.com/v1/messages";
+        private readonly string stableDiffusionApiUrl = "https://api-inference.huggingface.co/models/CompVis/stable-diffusion-v1-4";
         private readonly string geminiApiUrl = "https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCY630oJvwNHgE_fmN-ab9UKyI4A5oXi_c";
         private bool Isresponding = false;
 
@@ -265,14 +268,14 @@ namespace App
             try
             {
                 using var client = new HttpClient();
-                client.DefaultRequestHeaders.Add("api-key", "b2d062a1-97a0-4d77-9db9-f63bcb9cbe3c");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "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");
 
                 var content = new FormUrlEncodedContent(new Dictionary<string, string>
                 {
                     { "text", query }
                 });
 
-                var response = await client.PostAsync("https://api.deepai.org/api/text2img", content);
+                var response = await client.PostAsync(stableDiffusionApiUrl, content);
                 var responseString = await response.Content.ReadAsStringAsync();
 
                 if (!response.IsSuccessStatusCode)
