@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Net.Http.Headers;
+using Microsoft.Maui.Controls.PlatformConfiguration.TizenSpecific;
+
 
 namespace App
 {
@@ -27,8 +29,9 @@ namespace App
         private readonly HttpClient httpClient = new HttpClient();
 
         private readonly string mistralApiUrl = "https://api.mistral-7b.com/v1/chat/completions";
+        private readonly string deepInfraApiKey = "b0KmYyKoSboIC6BkZGztfjOYpN3OVWSL";
+        private readonly string deepInfraApiUrl = "https://api.deepinfra.ai/v1/generation/text-to-image";
         private readonly string claudeApiUrl = "https://api.anthropic.com/v1/messages";
-        private readonly string stableDiffusionApiUrl = "https://api-inference.huggingface.co/models/CompVis/stable-diffusion-v1-4";
         private readonly string geminiApiUrl = "https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCY630oJvwNHgE_fmN-ab9UKyI4A5oXi_c";
         private bool Isresponding = false;
 
@@ -92,9 +95,8 @@ namespace App
                     if (!string.IsNullOrEmpty(response))
                     {
                         if (Uri.IsWellFormedUriString(response, UriKind.Absolute))
-                            chatMessages.Add(new ChatMessage { ImageUrl = response });
-                        else
-                            chatMessages.Add(new ChatMessage { Text = "SHAIDOW AI (Fallback): " + response });
+                        chatMessages.Add(new ChatMessage { ImageUrl = response });
+
                     }
                 }
                 else
@@ -118,7 +120,7 @@ namespace App
                     model = "mistral-small",
                     messages = new[]
                     {
-                        new { role = "user", content = $"Categorize this query: {userMessage}" }
+                        new { role = "user", content = $"Classify the following user query into one of these categories: 'Information Seeking', 'Image Generation', or 'Report Writing'.\n\nQuery: {userMessage}" }
                     }
                 };
 
@@ -167,7 +169,7 @@ namespace App
                             parts = new[]
                             {
                                 new { text = query },
-                                new { text = "You are SHAIDOW, an AI assistant developed by Ricky..." }
+                                new { text = $"The user asked: {query}. Respond to this query as a helpful and informative AI assistant.This application is shaidow make it your identity for now It brings different high level models in one place to help user get the best possible response possible in the market,It is second year student's curios project designed to be a versatile chatbot, capable of understanding and responding to a variety of user queries. It's built with the goal of providing helpful information, generating images, and assisting with creative writing tasks.The app works by taking a user's text input and then using AI to provide a relevant response.  The app first sends the user's query to the Mistral AI to determine the category of the request. If Mistral is unable to categorize the user's query, or if the primary AI model for a specific category fails to provide a valid response, or if a primary API returns an empty or invalid response, this fallback system is activated.When the fallback system is activated, the user's query is sent to you. Please provide a general, helpful, and informative text-based response to the user's query. If you cannot answer, say you do not know. The application is designed for general-purpose use and is not intended for any specific high-risk applications. This app is intended for educational and demonstration purposes." }
                             }
                         }
                     }
@@ -210,98 +212,85 @@ namespace App
         }
 
         private async Task<string> HandleInfoQuery(string query)
+{
+    Isresponding = true;
+    UpdateLoadingIndicator();
+    try
+    {
+        var requestBody = new
         {
-            Isresponding = true;
-            UpdateLoadingIndicator();
-            try
+            model = "mistral-small",
+            messages = new[]
             {
-                var requestBody = new
-                {
-                    model = "mistral-small",
-                    messages = new[]
-                    {
-                        new { role = "system", content = "You are SHAIDOW, an AI assistant developed by Ricky..." },
-                        new { role = "user", content = query }
-                    }
-                };
-
-                string jsonBody = JsonSerializer.Serialize(requestBody);
-                var request = new HttpRequestMessage(HttpMethod.Post, mistralApiUrl)
-                {
-                    Content = new StringContent(jsonBody, Encoding.UTF8, "application/json")
-                };
-                request.Headers.Add("Authorization", "Bearer wjy20ymt9gFt4EMgvD4ymjxpeMun1cVD");
-
-                var response = await httpClient.SendAsync(request);
-                if (!response.IsSuccessStatusCode)
-                {
-                    Console.WriteLine($"Mistral query error : {response.StatusCode}, Details : {await response.Content.ReadAsStringAsync()}");
-                    return await HandleFallbackQuery(query);
-                }
-
-                var responseBody = await response.Content.ReadAsStringAsync();
-                using var jsonDoc = JsonDocument.Parse(responseBody);
-                string answer = jsonDoc.RootElement
-                    .GetProperty("choices")[0]
-                    .GetProperty("message")
-                    .GetProperty("content")
-                    .GetString()?.Trim();
-
-                return string.IsNullOrWhiteSpace(answer) ? await HandleFallbackQuery(query) : answer;
+                new { role = "system", content = "You are SHAIDOW, a powerful AI assistant using multiple free models. You are not Mistral. Only introduce yourself if asked." },
+                new { role = "user", content = query }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error in HandleInfoQuery: {ex.Message}");
-                return await HandleFallbackQuery(query);
-            }
-            finally
-            {
-                Isresponding = false;
-                UpdateLoadingIndicator();
-            }
-        }
+        };
+
+        string jsonBody = JsonSerializer.Serialize(requestBody);
+        var request = new HttpRequestMessage(HttpMethod.Post, mistralApiUrl)
+        {
+            Content = new StringContent(jsonBody, Encoding.UTF8, "application/json")
+        };
+        request.Headers.Add("Authorization", "Bearer wjy20ymt9gFt4EMgvD4ymjxpeMun1cVD");
+
+        var response = await httpClient.SendAsync(request);
+        if (!response.IsSuccessStatusCode)
+            return $"Mistral Info Query Error: {response.StatusCode}";
+
+        var responseBody = await response.Content.ReadAsStringAsync();
+        using var jsonDoc = JsonDocument.Parse(responseBody);
+        var text = jsonDoc.RootElement
+            .GetProperty("choices")[0]
+            .GetProperty("message")
+            .GetProperty("content")
+            .GetString();
+
+        return text ?? "SHAIDOW couldn't generate a proper response.";
+    }
+    catch (Exception ex)
+    {
+        return $"Info Query Error: {ex.Message}";
+    }
+    finally
+    {
+        Isresponding = false;
+        UpdateLoadingIndicator();
+    }
+}
+
+
 
         private async Task<string> HandleImgQuery(string query)
         {
             Isresponding = true;
             UpdateLoadingIndicator();
-            try
-            {
-                using var client = new HttpClient();
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "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");
+            
+    string fallbackImageUrl = "https://raw.githubusercontent.com/RICKY-gmdev/SHAIDOW/27ee40f6c1fa3871936900fff9569f139d8db015/App/Resources/Images/79177df4-99c8-441a-88aa-1181b7b07f89.png";
 
-                var content = new FormUrlEncodedContent(new Dictionary<string, string>
-                {
-                    { "text", query }
-                });
+    // Notify the user that actual generation is skipped
+    chatMessages.Add(new ChatMessage
+    {
+        Text = "⚠️ Image generation is temporarily disabled. Showing placeholder image instead."
+    });
 
-                var response = await client.PostAsync(stableDiffusionApiUrl, content);
-                var responseString = await response.Content.ReadAsStringAsync();
+    // Show fallback image
+    chatMessages.Add(new ChatMessage
+    {
+        ImageUrl = fallbackImageUrl
+    });
+    
+    Isresponding = false;
+            UpdateLoadingIndicator();
 
-                if (!response.IsSuccessStatusCode)
-                {
-                    return $"Image Generation Error: {response.StatusCode}";
-                }
-
-                var json = JsonDocument.Parse(responseString);
-                if (json.RootElement.TryGetProperty("output_url", out var imageUrlElement))
-                {
-                    return imageUrlElement.GetString();
-                }
-
-                return "Image generation failed: output_url missing.";
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error in HandleImgQuery: {ex.Message}");
-                return await HandleFallbackQuery(query);
-            }
-            finally
-            {
-                Isresponding = false;
-                UpdateLoadingIndicator();
-            }
+    // Scroll to the bottom
+            ChatList.ScrollTo(chatMessages.Last(), null, ScrollToPosition.End, true);
+        return fallbackImageUrl;
+            
         }
+
+
+    
 
         private async Task<string> HandleCreativeQuery(string query)
         {
@@ -310,7 +299,7 @@ namespace App
             try
             {
                 // Add your Claude or other logic here later
-                return await Task.FromResult("[Creative response goes here]");
+                return await HandleFallbackQuery(query);
             }
             finally
             {
