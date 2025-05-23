@@ -78,6 +78,10 @@
             "OpenAI": {
               "target": "Package",
               "version": "[2.1.0, )"
+            },
+            "sqlite-net-pcl": {
+              "target": "Package",
+              "version": "[1.9.172, )"
             }
           },
           "imports": [
@@ -127,6 +131,10 @@
             "OpenAI": {
               "target": "Package",
               "version": "[2.1.0, )"
+            },
+            "sqlite-net-pcl": {
+              "target": "Package",
+              "version": "[1.9.172, )"
             }
           },
           "imports": [
@@ -176,6 +184,10 @@
             "OpenAI": {
               "target": "Package",
               "version": "[2.1.0, )"
+            },
+            "sqlite-net-pcl": {
+              "target": "Package",
+              "version": "[1.9.172, )"
             }
           },
           "imports": [
@@ -220,6 +232,10 @@
             "OpenAI": {
               "target": "Package",
               "version": "[2.1.0, )"
+            },
+            "sqlite-net-pcl": {
+              "target": "Package",
+              "version": "[1.9.172, )"
             }
           },
           "imports": [

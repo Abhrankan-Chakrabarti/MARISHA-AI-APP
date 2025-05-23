@@ -10,6 +10,5 @@
             "request": "launch",
             "preLaunchTask": "maui: Build"
         }
-
     ]
 }

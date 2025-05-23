@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Http.Headers;
 using Microsoft.Maui.Controls.PlatformConfiguration.TizenSpecific;
+using Shaidow.Data;
 
 
 namespace App
@@ -29,8 +30,7 @@ namespace App
         private readonly HttpClient httpClient = new HttpClient();
 
         private readonly string mistralApiUrl = "https://api.mistral-7b.com/v1/chat/completions";
-        private readonly string deepInfraApiKey = "b0KmYyKoSboIC6BkZGztfjOYpN3OVWSL";
-        private readonly string deepInfraApiUrl = "https://api.deepinfra.ai/v1/generation/text-to-image";
+        
         private readonly string claudeApiUrl = "https://api.anthropic.com/v1/messages";
         private readonly string geminiApiUrl = "https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCY630oJvwNHgE_fmN-ab9UKyI4A5oXi_c";
         private bool Isresponding = false;

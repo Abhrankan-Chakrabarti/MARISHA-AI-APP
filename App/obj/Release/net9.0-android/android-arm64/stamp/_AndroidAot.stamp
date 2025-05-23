@@ -14,6 +14,11 @@ obj\Release\net9.0-android\android-arm64\aot\Microsoft.Maui.dll.so
 obj\Release\net9.0-android\android-arm64\aot\Microsoft.Maui.Essentials.dll.so
 obj\Release\net9.0-android\android-arm64\aot\Microsoft.Maui.Graphics.dll.so
 obj\Release\net9.0-android\android-arm64\aot\OpenAI.dll.so
+obj\Release\net9.0-android\android-arm64\aot\SQLite-net.dll.so
+obj\Release\net9.0-android\android-arm64\aot\SQLitePCLRaw.batteries_v2.dll.so
+obj\Release\net9.0-android\android-arm64\aot\SQLitePCLRaw.core.dll.so
+obj\Release\net9.0-android\android-arm64\aot\SQLitePCLRaw.lib.e_sqlite3.android.dll.so
+obj\Release\net9.0-android\android-arm64\aot\SQLitePCLRaw.provider.e_sqlite3.dll.so
 obj\Release\net9.0-android\android-arm64\aot\System.ClientModel.dll.so
 obj\Release\net9.0-android\android-arm64\aot\System.Memory.Data.dll.so
 obj\Release\net9.0-android\android-arm64\aot\Xamarin.AndroidX.Activity.dll.so
@@ -90,6 +95,7 @@ obj\Release\net9.0-android\android-arm64\aot\System.Threading.dll.so
 obj\Release\net9.0-android\android-arm64\aot\System.Web.HttpUtility.dll.so
 obj\Release\net9.0-android\android-arm64\aot\System.Xml.ReaderWriter.dll.so
 obj\Release\net9.0-android\android-arm64\aot\System.dll.so
+obj\Release\net9.0-android\android-arm64\aot\netstandard.dll.so
 obj\Release\net9.0-android\android-arm64\aot\Java.Interop.dll.so
 obj\Release\net9.0-android\android-arm64\aot\Mono.Android.Runtime.dll.so
 obj\Release\net9.0-android\android-arm64\aot\Mono.Android.dll.so
