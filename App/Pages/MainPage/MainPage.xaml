@@ -24,7 +24,7 @@
                     <Label Text="SHAIDOW"
                            TextColor="Cyan"
                            BackgroundColor="Black"
-                           FontSize="40"
+                           FontSize="{OnPlatform iOS=40, Android=40, MacCatalyst=40}"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
                 </Border>
