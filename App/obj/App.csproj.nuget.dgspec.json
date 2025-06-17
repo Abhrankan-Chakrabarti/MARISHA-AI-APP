@@ -67,7 +67,7 @@
             },
             "Microsoft.Maui.Controls": {
               "target": "Package",
-              "version": "[9.0.14, )"
+              "version": "[9.0.51, )"
             },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
@@ -78,6 +78,10 @@
             "OpenAI": {
               "target": "Package",
               "version": "[2.1.0, )"
+            },
+            "Plugin.Maui.Popup": {
+              "target": "Package",
+              "version": "[1.0.5, )"
             },
             "sqlite-net-pcl": {
               "target": "Package",
@@ -98,7 +102,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[9.0.4, 9.0.4]"
+              "version": "[9.0.5, 9.0.5]"
             }
           ],
           "frameworkReferences": {
@@ -120,7 +124,7 @@
             },
             "Microsoft.Maui.Controls": {
               "target": "Package",
-              "version": "[9.0.14, )"
+              "version": "[9.0.51, )"
             },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
@@ -131,6 +135,10 @@
             "OpenAI": {
               "target": "Package",
               "version": "[2.1.0, )"
+            },
+            "Plugin.Maui.Popup": {
+              "target": "Package",
+              "version": "[1.0.5, )"
             },
             "sqlite-net-pcl": {
               "target": "Package",
@@ -151,7 +159,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[9.0.4, 9.0.4]"
+              "version": "[9.0.5, 9.0.5]"
             }
           ],
           "frameworkReferences": {
@@ -173,7 +181,7 @@
             },
             "Microsoft.Maui.Controls": {
               "target": "Package",
-              "version": "[9.0.14, )"
+              "version": "[9.0.51, )"
             },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
@@ -184,6 +192,10 @@
             "OpenAI": {
               "target": "Package",
               "version": "[2.1.0, )"
+            },
+            "Plugin.Maui.Popup": {
+              "target": "Package",
+              "version": "[1.0.5, )"
             },
             "sqlite-net-pcl": {
               "target": "Package",
@@ -205,7 +217,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[9.0.4, 9.0.4]"
+              "version": "[9.0.5, 9.0.5]"
             }
           ],
           "frameworkReferences": {
@@ -227,11 +239,15 @@
             },
             "Microsoft.Maui.Controls": {
               "target": "Package",
-              "version": "[9.0.14, )"
+              "version": "[9.0.51, )"
             },
             "OpenAI": {
               "target": "Package",
               "version": "[2.1.0, )"
+            },
+            "Plugin.Maui.Popup": {
+              "target": "Package",
+              "version": "[1.0.5, )"
             },
             "sqlite-net-pcl": {
               "target": "Package",

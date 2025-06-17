@@ -12,6 +12,9 @@ using System.Net;
 using System.Net.Http.Headers;
 using Microsoft.Maui.Controls.PlatformConfiguration.TizenSpecific;
 using Shaidow.Data;
+using PopupUI;
+using MauiPopup.Views;
+using App.Popup;
 
 
 namespace App
@@ -263,29 +266,46 @@ namespace App
 
         private async Task<string> HandleImgQuery(string query)
         {
-            Isresponding = true;
+             Isresponding = true;
             UpdateLoadingIndicator();
+            await popupservice.ShowPopupAsync(new ImagePopup(), "Generating Image...");
             
-    string fallbackImageUrl = "https://raw.githubusercontent.com/RICKY-gmdev/SHAIDOW/27ee40f6c1fa3871936900fff9569f139d8db015/App/Resources/Images/79177df4-99c8-441a-88aa-1181b7b07f89.png";
+            try
+            {
+                using var client = new HttpClient();
+                client.DefaultRequestHeaders.Add("api-key", "b2d062a1-97a0-4d77-9db9-f63bcb9cbe3c");
 
-    // Notify the user that actual generation is skipped
-    chatMessages.Add(new ChatMessage
-    {
-        Text = "⚠️ Image generation is temporarily disabled. Showing placeholder image instead."
-    });
+                var content = new FormUrlEncodedContent(new Dictionary<string, string>
+                {
+                    { "text", query }
+                });
 
-    // Show fallback image
-    chatMessages.Add(new ChatMessage
-    {
-        ImageUrl = fallbackImageUrl
-    });
-    
-    Isresponding = false;
-            UpdateLoadingIndicator();
+                var response = await client.PostAsync("https://github.com/RICKY-gmdev/SHAIDOW/blob/main/App/Resources/Images/79177df4-99c8-441a-88aa-1181b7b07f89.png?raw=true", content);
+                var responseString = await response.Content.ReadAsStringAsync();
 
-    // Scroll to the bottom
-            ChatList.ScrollTo(chatMessages.Last(), null, ScrollToPosition.End, true);
-        return fallbackImageUrl;
+                if (!response.IsSuccessStatusCode)
+                {
+                    return $"Image Generation Error: {response.StatusCode}";
+                }
+
+                var json = JsonDocument.Parse(responseString);
+                if (json.RootElement.TryGetProperty("output_url", out var imageUrlElement))
+                {
+                    return imageUrlElement.GetString();
+                }
+
+                return "Image generation failed: output_url missing.";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in HandleImgQuery: {ex.Message}");
+                return await HandleFallbackQuery(query);
+            }
+            finally
+            {
+                Isresponding = false;
+                UpdateLoadingIndicator();
+            }
             
         }
 
